@@ -31,7 +31,7 @@ endif
 
 
 
-PLATFORM_CPPFLAGS += -DCONFIG_MIPS -D__MIPS__
+PLATFORM_CPPFLAGS += -DCONFIG_MIPS -D__MIPS__ --std=gnu89
 
 #
 # From Linux arch/mips/Makefile
