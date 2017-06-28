@@ -59,20 +59,18 @@
 
 #define CFG_PRINT_MPR
 
-#define CONFIG_BOOTDELAY	0
 #define CONFIG_ZERO_BOOTDELAY_CHECK
 #undef	CONFIG_BOOTARGS
-#define CONFIG_BOOTCOMMAND \
-    "fatload mmc 0 $(loadaddr) vmlinux.64;" \
-    "bootoctlinux $(loadaddr) numcores=2 endbootargs " \
-    "mem=0 root=/dev/mmcblk0p2 rootdelay=10 rw " \
-    "rootsqimg=squashfs.img rootsqwdir=w " \
-    "mtdparts=" _FLASH_PARTS
 
 #define CONFIG_FACTORY_RESET
 #define CONFIG_FACTORY_RESET_GPIO      0
 #define CONFIG_FACTORY_RESET_TIME      3
-#define CONFIG_FACTORY_RESET_BOOTCMD   CONFIG_BOOTCOMMAND " resetsqimg"
+#define CONFIG_FACTORY_RESET_BOOTCMD   \
+    "fatload mmc 0 $(loadaddr) vmlinux.64;" \
+    "bootoctlinux $(loadaddr) numcores=2 endbootargs " \
+    "mem=0 root=/dev/mmcblk0p2 rootdelay=10 rw " \
+    "rootsqimg=squashfs.img rootsqwdir=w " \
+    "mtdparts=" _FLASH_PARTS " resetsqimg"
 
 #ifndef __ASSEMBLY__
 extern void board_blink_led(int ms);
