@@ -9,7 +9,8 @@ The original tarball name is:
     GPL.ER-e200.v1.9.1.1.4977353.tar.bz2
 
 The modifications are mostly to get it to build with a "standard" mips toolchain
-and to enable a number of missing U-Boot commands.
+and to enable a number of missing U-Boot commands. The environment is moved to a
+different flash location to allow chainloading.
 
 ## Building
 Assuming your cross toolchain prefix is `mips-linux-gnu-`, run:
@@ -17,9 +18,9 @@ Assuming your cross toolchain prefix is `mips-linux-gnu-`, run:
     make CROSS_COMPILE=mips-linux-gnu- octeon_ubnt_e200_config
     make CROSS_COMPILE=mips-linux-gnu- -j$(nproc)
 
-The file `u-boot-octeon_ubnt_e200.bin` should contain the bootloader image. This
-image can also be chainloaded from a running U-Boot by simply jumping to the
-first instruction.
+The file `u-boot-octeon_ubnt_e200.bin` should contain the bootloader image.
+This image is designed to be chainloaded from an existing U-Boot by simply
+jumping to the first instruction.
 
     Octeon ubnt_e200# tftpboot 0x02000000 u-boot-octeon_ubnt_e200.bin
     Octeon ubnt_e200# go 0x82000000
