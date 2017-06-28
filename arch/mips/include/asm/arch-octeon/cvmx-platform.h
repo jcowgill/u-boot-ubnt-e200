@@ -112,7 +112,7 @@
  * This is for data structures use by software ONLY,
  * as it is not 1-1 VA-PA mapped.
  */
-#ifndef CVMX_BUILD_FOR_LINUX_HOST
+#if !defined(CVMX_BUILD_FOR_LINUX_HOST) && !defined(CVMX_BUILD_FOR_UBOOT)
 #define CVMX_SHARED __attribute__ ((cvmx_shared))
 #else
 #define CVMX_SHARED
