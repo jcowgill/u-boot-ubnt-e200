@@ -128,10 +128,33 @@ extern void board_set_led_normal(void);
 
 /* Address and size of Primary Environment Sector	*/
 #define CONFIG_ENV_SIZE		(8*1024)
-#define CONFIG_ENV_ADDR		(CONFIG_SYS_FLASH_BASE + CONFIG_SYS_FLASH_SIZE - CONFIG_ENV_SIZE)
-
 #define CONFIG_UBNT_GD_SIZE	CONFIG_ENV_SIZE
-#define CONFIG_UBNT_GD_ADDR	(CONFIG_ENV_ADDR - CONFIG_UBNT_GD_SIZE)
+
+/*
+ * jcowgill:
+ * The flash layout is roughly:
+ *  0          = U-Boot
+ *   ..
+ *  size - 24k = Chainloaded Environment
+ *   ..
+ *  size - 16k = "gd" block (contains immutable config like MAC addresses)
+ *
+ *  size - 8k  = Old Environment
+ *    ..
+ *  size - 1
+ *
+ * If CONFIG_ENV_CHAINLOAD is set, we use the chainloaded environment area,
+ * otherwize we use the "normal" environment area.
+ */
+#define CONFIG_ENV_CHAINLOAD
+
+#ifdef CONFIG_ENV_CHAINLOAD
+# define CONFIG_ENV_ADDR		(CONFIG_SYS_FLASH_BASE + CONFIG_SYS_FLASH_SIZE - CONFIG_ENV_SIZE * 2 - CONFIG_UBNT_GD_SIZE)
+#else
+# define CONFIG_ENV_ADDR		(CONFIG_SYS_FLASH_BASE + CONFIG_SYS_FLASH_SIZE - CONFIG_ENV_SIZE)
+#endif
+
+#define CONFIG_UBNT_GD_ADDR	(CONFIG_SYS_FLASH_BASE + CONFIG_SYS_FLASH_SIZE - CONFIG_ENV_SIZE - CONFIG_UBNT_GD_SIZE)
 #define CONFIG_UBNT_GD_MAC_DESC_OFF	0
 #define CONFIG_UBNT_GD_BOARD_DESC_OFF	(CONFIG_UBNT_GD_MAC_DESC_OFF \
 					 + sizeof(octeon_eeprom_mac_addr_t))
