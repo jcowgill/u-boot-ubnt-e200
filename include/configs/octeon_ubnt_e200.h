@@ -86,39 +86,6 @@ extern void board_set_led_normal(void);
 
 #include "octeon_cmd_conf.h"
 
-#undef CONFIG_CMD_NFS
-#undef CONFIG_CMD_DHCP
-#undef CONFIG_CMD_DNS
-#undef CONFIG_CMD_CDP
-
-#undef CONFIG_CMD_TIME
-#undef CONFIG_CMD_OCTEON_MEM
-#undef CONFIG_CMD_MISC
-#undef CONFIG_CMD_SHA1SUM
-#undef CONFIG_CMD_UNZIP
-#undef CONFIG_CMD_BUNZIP
-#undef CONFIG_CMD_MD5SUM
-#undef CONFIG_CMD_STRINGS
-#undef CONFIG_CMD_SETEXPR
-#undef CONFIG_CMD_GREPENV
-#undef CONFIG_CMD_EEPROM
-#undef CONFIG_CMD_I2C
-#undef CONFIG_CMD_GPIO
-
-#undef CONFIG_CMD_ECHO
-#undef CONFIG_CMD_OCTEON_REGINFO
-#undef CONFIG_CMD_ITEST
-#undef CONFIG_CMD_CONSOLE
-#undef CONFIG_CMD_BDI
-#undef CONFIG_CMD_LOADB
-#undef CONFIG_CMD_LOADS
-#undef CONFIG_CMD_SAVES
-#undef CONFIG_CMD_SOURCE
-#undef CONFIG_CMD_XIMG
-#undef CONFIG_CMD_CRAMFS
-
-#undef CONFIG_CMD_OCTEON_ERASEENV
-
 #ifdef  CONFIG_CMD_NET
 # include "octeon_network.h"
 #endif
