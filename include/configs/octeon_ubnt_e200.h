@@ -89,6 +89,7 @@ extern void board_set_led_normal(void);
 # include "octeon_network.h"
 #endif
 
+#define CONFIG_CMD_EXT2
 #define CONFIG_CMD_FAT
 #define CONFIG_CMD_FLASH
 
